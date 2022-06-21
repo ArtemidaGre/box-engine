@@ -1,36 +1,77 @@
-#file with modules and func :)
-
-from game_file import hp, language
+#Box engine to console quests, work in russian and english language.
 
 class game:
-    def battle(damage, ehp, edamage, defe, edef):   
-        from random import randint
-        from time import sleep
-        global hp, win, language
-        while True:
-            luck=randint(0, 100)
-            if luck>=21:
+    def battle(hp, damage, ehp, edamage, defe, edefe):
+        global win, language
+        if language=='rus':
+            start_hp=hp
+            import time as t
+            print('Бой начинается!')
+            print('у вас', hp, 'hp, и', damage, 'урона\nу врага', ehp, 'hp, и', edamage, 'урона')
+            t.sleep(0.5)
+            import random as r
+            while hp>=1 and ehp>=1:
                 if hp>=1:
-                    hp=hp-(edamage*edef)
-                    sleep(0.2)
-            if luck<=80:
+                    luck=r.randint(0, 100)
+                    if luck>=21:
+                        to_damage=r.randint(0, damage)*edefe
+                        ehp=ehp-to_damage
+                        print('вы ударили противника на', to_damage, 'урона, у него осталость', ehp, 'hp')
+                        t.sleep(0.2)
+                    elif luck<=20:
+                        print('Вы промахнулисть')
+                        t.sleep(0.2)
+                    luck2=r.randint(0, 100)
                 if ehp>=1:
-                    ehp=ehp-(damage*defe)
-                    sleep(0.2)
-            if hp<=0:
+                    if luck2>=41:
+                        to_damage2=r.randint(0, edamage)*defe
+                        hp=hp-to_damage2
+                        print('враг вас ударил на', to_damage2, 'урона, у вас осталость', hp, 'hp')
+                        t.sleep(0.2)
+                    elif luck2<=40:
+                        print('враг промахнулся')
+                        t.sleep(0.2)
+            if hp<=0.1:
                 win=0
-                if language=='rus':
-                    print('вы проиграли :(')
-                elif language=='eng':
-                    print('you lose :(')
-                break
-            if ehp<=0:
+                print('вы проиграли!!!')
+            elif hp>=0.0:
                 win=1
-                if  language=='rus':
-                    print('Вы победили :)')
-                elif language=='eng':
-                    print('you win :)')
-                break
+                print('Победа!!!')
+        if language=='eng':
+            start_hp=hp
+            import time as t
+            print('fight has been started')
+            print('you have', hp, 'hp, and', damage, 'damage\nenemy have', ehp, 'hp, and', edamage, 'damage')
+            t.sleep(0.5)
+            import random as r
+            while hp>=1 and ehp>=1:
+                if hp>=1:
+                    luck=r.randint(0, 100)
+                    if luck>=21:
+                        to_damage=r.randint(0, damage)*edefe
+                        ehp=ehp-to_damage
+                        print('you beat enemy on', to_damage, 'damage, he had', ehp, 'hp')
+                        t.sleep(0.2)
+                    elif luck<=20:
+                        print('you missed')
+                        t.sleep(0.2)
+                    luck2=r.randint(0, 100)
+                if ehp>=1:
+                    if luck2>=41:
+                        to_damage2=r.randint(0, edamage)*defe
+                        hp=hp-to_damage2
+                        print('enemy beats you on', to_damage2, 'damage, you have', hp, 'hp')
+                        t.sleep(0.2)
+                    elif luck2<=40:
+                        print('enemy missed')
+                        t.sleep(0.2)
+            if hp<=0.1:
+                win=0
+                print('You lose!!!')
+            elif hp>=0.0:
+                win=1
+                print('You win!!!')
+        t.sleep(0.5)
     def magazine(i1, c1, i2, c2, i3, c3):
         global coins, language, a1, a2, a3
         a1=a2=a3=0
@@ -81,4 +122,11 @@ class game:
                     else:
                         print("you don't buy", i3)
                 c_buy=input('continue buying?\n>>>')
-    
+                
+                
+class subfunc():
+    def save(to_save, save_name):
+        file=open(save_name, 'a+')
+        file.write(str(to_save))
+        file.newlines
+        file.close()
