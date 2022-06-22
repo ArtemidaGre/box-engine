@@ -5,6 +5,8 @@ subfunc.save('amogus2', 'save.txt')
 
 file=open('save.txt')
 
-amogus=file.readline(1)
+amogus=file.read()
 
 print(amogus)
+
+subfunc.clearsave('save.txt')

@@ -122,6 +122,44 @@ class game:
                     else:
                         print("you don't buy", i3)
                 c_buy=input('continue buying?\n>>>')
+    def bazar():
+        global language
+        if language=='rus':
+            import random as r
+            global torg
+            torg=0
+            print('Вы можете купить', wish1, 'за', w1c,'рублей!')
+            choise=str(input('Купить '+wish1+'?\n>>>'))
+            if choise=='да':
+                if coins>=w1c:
+                    print('Вы можете купить это!')
+                    choise=str(input('торговаться?\n>>>'))
+                    if choise=='да':
+                        while True:
+                            torgm=int(input('до скольки вы хотите скинуть цену?\n>>>'))
+                            if torgm>=(w1c/2.1):
+                                print('Вы начали торги!')
+                                torg=r.randint(0,100)
+                                if torg>=80:
+                                    print('У вас получилось!')
+                                    w1c=torgm
+                                    if coins>=w1c:
+                                        coins=coins-w1c
+                                        torg=1
+                                        break
+                                    elif coins<<w1c:
+                                        print("у вас слишком мало денег!")
+                                elif torg>=50:
+                                    print('У вас почти получиось!')
+                                    w1c=torgm+(w1c/5)
+                                elif torg<=50:
+                                    print('У вас не получилось')
+                    elif choise=="нет":
+                        print("♂fuck you♂")
+            elif choise=="нет":
+                print("♂fuck you♂")
+                torg=0
+        
                 
                 
 class subfunc():
@@ -130,3 +168,8 @@ class subfunc():
         file.write(str(to_save))
         file.newlines
         file.close()
+    def clearsave(save_name):
+        from os import remove
+        file=open(save_name, 'w')
+        file.close()
+    
