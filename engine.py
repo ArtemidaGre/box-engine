@@ -4,10 +4,10 @@ file=open('language.txt', 'r')
 language=file.read()
 
 class game:
-    def battle(hp, damage, ehp, edamage, defe, edefe):
+    def battle(hp, damage, ehp, edamage, defe, edefe, lic_code):
         global win, language
-        subfunc.lic_c(' 5as6-5f6a-ga5s-6f9a')
-        if language=='rus' and lic:
+        subfunc.lic_c(lic_code)
+        if language=='rus' and licence_check:
             start_hp=hp
             import time as t
             print('Бой начинается!')
@@ -41,7 +41,7 @@ class game:
             elif hp>=0.0:
                 win=1
                 print('Победа!!!')
-        if language=='eng' and lic:
+        if language=='eng' and licence_check:
             start_hp=hp
             import time as t
             print('fight has been started')
@@ -75,7 +75,10 @@ class game:
             elif hp>=0.0:
                 win=1
                 print('You win!!!')
+        else:
+            print("you don't get licence!")
         t.sleep(0.5)
+        
     def magazine(i1, c1, i2, c2, i3, c3):
         global coins, language, a1, a2, a3
         a1=a2=a3=0
@@ -220,7 +223,11 @@ class subfunc():
         file.close()
         if code==l1 or code==l2 or code==l3 or code==l4 or code==l5 or code==l6:
             licence_i=True
-        else:
+        elif code!=l1 or code!=l2 or code!=l3 or code!=l4 or code!=l5 or code!=l6:
             licence_i=False
+        if code=='testing':
+            licence_i='true'
         global licence_check
         licence_check=licence_i
+        
+subfunc.lic_c('testing')
