@@ -6,7 +6,8 @@ language=file.read()
 class game:
     def battle(hp, damage, ehp, edamage, defe, edefe):
         global win, language
-        if language=='rus':
+        subfunc.lic_c(' 5as6-5f6a-ga5s-6f9a')
+        if language=='rus' and lic:
             start_hp=hp
             import time as t
             print('Бой начинается!')
@@ -40,7 +41,7 @@ class game:
             elif hp>=0.0:
                 win=1
                 print('Победа!!!')
-        if language=='eng':
+        if language=='eng' and lic:
             start_hp=hp
             import time as t
             print('fight has been started')
@@ -126,10 +127,9 @@ class game:
                         print("you don't buy", i3)
                 c_buy=input('continue buying?\n>>>')
     def bazar():
-        global language
+        global language, tryis
         if language=='rus':
             import random as r
-            global torg
             torg=0
             print('Вы можете купить', wish1, 'за', w1c,'рублей!')
             choise=str(input('Купить '+wish1+'?\n>>>'))
@@ -164,7 +164,6 @@ class game:
                 torg=0
         if language=='eng':
             import random as r
-            global torg
             torg=0
             print('you can buy', wish1, 'it costs', w1c,'coins')
             choise=str(input('buy '+wish1+'?\n>>>'))
@@ -183,7 +182,7 @@ class game:
                                     w1c=torgm
                                     if coins>=w1c:
                                         coins=coins-w1c
-                                        torg=1
+                                        tryis=1
                                         break
                                     elif coins<<w1c:
                                         print("you have too little money!")
@@ -196,7 +195,7 @@ class game:
                         print("♂fuck you♂")
             elif choise=="no":
                 print("♂fuck you♂")
-                torg=0
+                tryis
 
 
 
@@ -210,3 +209,18 @@ class subfunc():
         from os import remove
         file=open(save_name, 'w')
         file.close()
+    def lic_c(code):
+        file=open('.git\objects\info\lic.md', 'r')
+        l1=file.readline(20)
+        l2=file.readline(20)
+        l3=file.readline(20)
+        l4=file.readline(20)
+        l5=file.readline(20)
+        l6=file.readline(20)
+        file.close()
+        if code==l1 or code==l2 or code==l3 or code==l4 or code==l5 or code==l6:
+            licence_i=True
+        else:
+            licence_i=False
+        global licence_check
+        licence_check=licence_i

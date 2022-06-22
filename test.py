@@ -1,12 +1,4 @@
-from engine import subfunc
+from engine import *
 
-subfunc.save('amogus\n', 'save.txt')
-subfunc.save('amogus2', 'save.txt')
-
-file=open('save.txt')
-
-amogus=file.read()
-
-print(amogus)
-
-subfunc.clearsave('save.txt')
+subfunc.lic_c(' 5as6-5f6a-ga5s-6f9a')
+print(licence_check)
