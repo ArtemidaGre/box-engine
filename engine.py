@@ -162,9 +162,9 @@ class game:
             elif choise=="нет":
                 print("♂fuck you♂")
                 torg=0
-        
-                
-                
+
+
+
 class subfunc():
     def save(to_save, save_name):
         file=open(save_name, 'a+')
