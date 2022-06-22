@@ -129,7 +129,7 @@ class game:
                     else:
                         print("you don't buy", i3)
                 c_buy=input('continue buying?\n>>>')
-    def bazar():
+    def bazar(wish1, w1c, coins):
         global language, tryis
         if language=='rus':
             import random as r
@@ -204,7 +204,7 @@ class game:
 
 class subfunc():
     def save(to_save, save_name):
-        file=open(save_name, 'a+')
+        file=open("saves/"+save_name, 'a+')
         file.write(str(to_save))
         file.newlines
         file.close()
@@ -213,7 +213,7 @@ class subfunc():
         file=open(save_name, 'w')
         file.close()
     def lic_c(code):
-        file=open('.git\objects\info\lic.md', 'r')
+        file=open('saves\licenze', 'r')
         l1=file.readline(20)
         l2=file.readline(20)
         l3=file.readline(20)
@@ -226,7 +226,7 @@ class subfunc():
         elif code!=l1 or code!=l2 or code!=l3 or code!=l4 or code!=l5 or code!=l6:
             licence_i=False
         if code=='testing':
-            licence_i='true'
+            licence_i=0
         global licence_check
         licence_check=licence_i
         
