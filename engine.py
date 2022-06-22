@@ -162,6 +162,41 @@ class game:
             elif choise=="нет":
                 print("♂fuck you♂")
                 torg=0
+        if language=='eng':
+            import random as r
+            global torg
+            torg=0
+            print('you can buy', wish1, 'it costs', w1c,'coins')
+            choise=str(input('buy '+wish1+'?\n>>>'))
+            if choise=='yes':
+                if coins>=w1c:
+                    print('You can buy it!')
+                    choise=str(input('bargain?\n>>>'))
+                    if choise=='yes':
+                        while True:
+                            torgm=int(input('how much do you want to drop the price?\n>>>'))
+                            if torgm>=(w1c/2.1):
+                                print('You have started bidding!')
+                                torg=r.randint(0,100)
+                                if torg>=80:
+                                    print('You did it!')
+                                    w1c=torgm
+                                    if coins>=w1c:
+                                        coins=coins-w1c
+                                        torg=1
+                                        break
+                                    elif coins<<w1c:
+                                        print("you have too little money!")
+                                elif torg>=50:
+                                    print('You almost did it!')
+                                    w1c=torgm+(w1c/5)
+                                elif torg<=50:
+                                    print("You didn't succeed")
+                    elif choise=="no":
+                        print("♂fuck you♂")
+            elif choise=="no":
+                print("♂fuck you♂")
+                torg=0
 
 
 
