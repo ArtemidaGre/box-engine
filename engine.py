@@ -1,5 +1,8 @@
 #Box engine to console quests, work in russian and english language.
 
+file=open('language.txt', 'r')
+language=file.read()
+
 class game:
     def battle(hp, damage, ehp, edamage, defe, edefe):
         global win, language
@@ -172,4 +175,3 @@ class subfunc():
         from os import remove
         file=open(save_name, 'w')
         file.close()
-    
