@@ -1,6 +1,6 @@
 print('LICENSE CHECK!')
 
-file=open('.git\objects\info\lic.md', 'r')
+file=open('saves\licenze', 'r')
 l1=file.readline(20)
 l2=file.readline(20)
 l3=file.readline(20)
@@ -42,3 +42,5 @@ elif a6==l6:
     file.close()
 else:
     print("you don't have licence")
+
+a=input('<<<')
