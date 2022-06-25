@@ -6,13 +6,13 @@ main.geometry('300x200')
 main.title('language choose')
 
 def rus():
-    file=open('language.txt', 'w')
+    file=open('language.txt', 'w+')
     file.write('rus')
     file.close()
     messagebox.showinfo('выбран язык', 'выбран Русский язык')
     
 def eng():
-    file=open('language.txt', 'w')
+    file=open('language.txt', 'w+')
     file.write('eng')
     file.close()
     messagebox.showinfo('language', 'english language has been added')

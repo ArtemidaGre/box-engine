@@ -214,12 +214,17 @@ class subfunc():
         file.close()
     def lic_c(code):
         file=open('saves\licenze', 'r')
-        l1=file.readline(20)
-        l2=file.readline(20)
-        l3=file.readline(20)
-        l4=file.readline(20)
-        l5=file.readline(20)
-        l6=file.readline(20)
+        l1=file.readline(19)
+        a1P=file.readline(1)
+        l2=file.readline(19)
+        a1P=file.readline(1)
+        l3=file.readline(19)
+        a1P=file.readline(1)
+        l4=file.readline(19)
+        a1P=file.readline(1)
+        l5=file.readline(19)
+        a1P=file.readline(1)
+        l6=file.readline(19)
         file.close()
         if code==l1 or code==l2 or code==l3 or code==l4 or code==l5 or code==l6:
             licence_i=True
