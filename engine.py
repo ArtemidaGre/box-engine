@@ -201,7 +201,6 @@ class game:
                 tryis
 
 
-
 class subfunc():
     def save(to_save, save_name):
         file=open("saves/"+save_name, 'a+')
@@ -234,5 +233,26 @@ class subfunc():
             licence_i=0
         global licence_check
         licence_check=licence_i
-        
-subfunc.lic_c('testing')
+    def inventory(to_do, to_fl, num):
+        global inventory
+        language=file.read()
+        if language == 'rus':
+            inventory=['пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка']
+            if to_do=='remove':
+                inventory[num] = 'пустая ячейка'
+            if to_do=='check':
+                print(inventory[1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+            if to_do=='add':
+                num=input('на какое место поставить?\n>>>')
+                print(inventory[1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+                inventory[num] = to_fl
+        if language == 'rus':
+            inventory=['none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none']
+            if to_do=='remove':
+                inventory[num] = 'none'
+            if to_do=='check':
+                print(inventory[1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+            if to_do=='add':
+                num=input('на какое место поставить?\n>>>')
+                print(inventory[1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+                inventory[num] = to_fl
