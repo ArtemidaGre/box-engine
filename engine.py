@@ -1,5 +1,8 @@
 #Box engine to console quests, work in russian and english language.
 
+from random import randint
+
+
 file=open('language.txt', 'r')
 language=file.read()
 
@@ -199,8 +202,31 @@ class game:
             elif choise=="no":
                 print("♂fuck you♂")
                 tryis
-
-
+    def new_battle(hp, ehp, damage, edamage, defence, edefence, ename):
+        from random import randint
+        file=open('language')
+        lang=file.readline(3)
+        battle_f=True
+        if lang=='rus':
+            print('у вас', hp, 'hp и',damage, 'урона')
+            print('Вот ваш инвентарь: ')
+            subfunc.inventory('check', 1, 1)
+            print('Вы будите бится с', ename, 'Вот его статы:')
+            print(ehp, 'hp и', damage, 'урона')
+            while battle_f:
+                print('Вы можете:\n1.бится\n2.ипользовать инвентарь\n3.обхитрить врага')
+                battle_use=input('>>>')
+                if battle_use==1 or 'бится':
+                    lucky=randint(0, 1000)
+                    if lucky<=199:
+                        print('Вы промахнулись!')
+                    elif lucky>=200:
+                        print('Вы попали!', end='')
+                        damage_i=randint(1, damage)
+                        print('. Вы ударили его на', damage_i)
+                    
+                        
+                    
 class subfunc():
     def save(to_save, save_name):
         file=open("saves/"+save_name, 'a+')
@@ -253,6 +279,6 @@ class subfunc():
             if to_do=='check':
                 print(inventory[1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
             if to_do=='add':
-                num=input('на какое место поставить?\n>>>')
+                num=input('choose place to put?\n>>>')
                 print(inventory[1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
                 inventory[num] = to_fl
