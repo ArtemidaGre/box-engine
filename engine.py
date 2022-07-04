@@ -228,6 +228,8 @@ class game:
                         
                     
 class subfunc():
+    global inventory, inventory_eff, inventory_use
+    global hp, damage, defence, coins
     def save(to_save, save_name):
         file=open("saves/"+save_name, 'a+')
         file.write(str(to_save))
@@ -259,11 +261,13 @@ class subfunc():
             licence_i=0
         global licence_check
         licence_check=licence_i
-    def inventory(to_do, to_fl, num):
-        global inventory
+    def inventory_u(to_do, to_fl, num, eff, use):
         language=file.read()
         if language == 'rus':
-            inventory=['пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка']
+            if to_do=='first':
+                inventory=['пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка', 'пустая ячейка']
+                inventory_use=['none', 'none', 'none, none', 'none', 'none, none', 'none', 'none,', 'none']
+                inventory_eff=[0,0,0,0,0,0,0,0,0,0]
             if to_do=='remove':
                 inventory[num] = 'пустая ячейка'
             if to_do=='check':
@@ -272,13 +276,47 @@ class subfunc():
                 num=input('на какое место поставить?\n>>>')
                 print(inventory[1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
                 inventory[num] = to_fl
-        if language == 'rus':
-            inventory=['none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none', 'none']
+                inventory_eff[num] = eff
+                inventory_use[num] = use
+            if to_do=='use':
+                inventory[num] = 'пустая ячейка'
+                if inventory_use[num]=='hal':
+                    hp=hp+inventory_eff[num]
+                if inventory_use[num]=='def':
+                    defence=defence-inventory_eff[num]
+                if inventory_use[num]=='dmg':
+                    damage=damage+inventory_eff[num]
+                if inventory_use[num]=='mny':
+                    coins=coins+inventory_eff[num]
+                else:
+                    print('эффектов нет  :{')
+            else:
+                print('error')
+        if language == 'eng':
+            if to_do=='first':
+                inventory=['none', 'none', 'none, none', 'none', 'none, none', 'none', 'none,', 'none']
+                inventory_use=['none', 'none', 'none, none', 'none', 'none, none', 'none', 'none,', 'none']
+                inventory_eff=[0,0,0,0,0,0,0,0,0,0]
             if to_do=='remove':
                 inventory[num] = 'none'
             if to_do=='check':
                 print(inventory[1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
             if to_do=='add':
                 num=input('choose place to put?\n>>>')
-                print(inventory[1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
                 inventory[num] = to_fl
+                inventory_eff[num] = eff
+                inventory_use[num] = use
+            if to_do=='use':
+                inventory[num] = 'none'
+                if inventory_use[num]=='hal':
+                    hp=hp+inventory_eff[num]
+                if inventory_use[num]=='def':
+                    defence=defence-inventory_eff[num]
+                if inventory_use[num]=='dmg':
+                    damage=damage+inventory_eff[num]
+                if inventory_use[num]=='mny':
+                    coins=coins+inventory_eff[num]
+                else:
+                    print('you have no effects  :{')
+            else:
+                print('error')

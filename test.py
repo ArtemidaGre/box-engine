@@ -1,4 +1,7 @@
-from engine import *
-from os import startfile
+from engine import subfunc
 
-startfile('engine.py')
+subfunc.inventory_u('add', 'тест', 0, 5, 'dam')
+
+subfunc.inventory_u('check', 0, 0, 0, 0)
+
+input()
