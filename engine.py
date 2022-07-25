@@ -9,8 +9,7 @@ language=file.read()
 class game:
     def battle(hp, damage, ehp, edamage, defe, edefe, lic_code):
         global win, language
-        subfunc.lic_c(lic_code)
-        if language=='rus' and licence_check:
+        if language=='rus':
             start_hp=hp
             import time as t
             print('Бой начинается!')
@@ -44,7 +43,7 @@ class game:
             elif hp>=0.0:
                 win=1
                 print('Победа!!!')
-        if language=='eng' and licence_check:
+        if language=='eng':
             start_hp=hp
             import time as t
             print('fight has been started')
@@ -204,26 +203,159 @@ class game:
                 tryis
     def new_battle(hp, ehp, damage, edamage, defence, edefence, ename):
         from random import randint
-        file=open('language')
+        from time import sleep
+        file=open('language.txt', 'r')
         lang=file.readline(3)
         battle_f=True
+        global win
         if lang=='rus':
             print('у вас', hp, 'hp и',damage, 'урона')
-            print('Вот ваш инвентарь: ')
-            subfunc.inventory('check', 1, 1)
             print('Вы будите бится с', ename, 'Вот его статы:')
             print(ehp, 'hp и', damage, 'урона')
+            first_kick=randint(1, 10)
+            stun=estun=0
             while battle_f:
-                print('Вы можете:\n1.бится\n2.ипользовать инвентарь\n3.обхитрить врага')
-                battle_use=input('>>>')
-                if battle_use==1 or 'бится':
-                    lucky=randint(0, 1000)
-                    if lucky<=199:
-                        print('Вы промахнулись!')
-                    elif lucky>=200:
-                        print('Вы попали!', end='')
-                        damage_i=randint(1, damage)
-                        print('. Вы ударили его на', damage_i)
+                if first_kick>=5:
+                    estun=0
+                    if hp>=1 and stun==0:
+                        luck=randint(1, 1000)
+                        if luck>=200:
+                            dam_tru=randint(1, damage)
+                            print('вы ударили', ename, 'на', dam_tru, 'но', ename,'получил', dam_tru*edefence)
+                            ehp-=dam_tru*edefence
+                            sleep(0.2)
+                        if luck<=199:
+                            print('вы не попали по', ename)
+                            sleep(0.2)
+                        if luck>=850:
+                            print(ename, 'оглушен')
+                            estun=1
+                            sleep(0.2)
+                    elif hp>=1 and stun==1:
+                        sleep(0.1)
+                    elif hp<=0:
+                        battle_f=False
+                        win=0
+                        print('вы проиграли(')
+                    stun=0
+                    if ehp>=1 and estun==0:
+                        luck=randint(1, 1000)
+                        if luck>=200:
+                            dam_tru=randint(1, edamage)
+                            print(ename, 'ударил вас на', dam_tru, 'но вы получили', dam_tru*defence)
+                            hp-=dam_tru*defence
+                            sleep(0.2)
+                        if luck<=199:
+                            print(ename, 'не попал по вам!')
+                            sleep(0.2)
+                        if luck>=870:
+                            print(ename, 'оглушил вас!')
+                            stun=1
+                    elif ehp>=1 and estun==1:
+                        sleep(0.1)
+                    elif ehp<=0:
+                        battle_f=False
+                        win=1
+                        print('вы выиграли!!')
+                else:
+                    if ehp>=1:
+                        luck=randint(1, 1000)
+                        if luck>=200:
+                            dam_tru=randint(1, edamage)
+                            print(ename, 'ударил вас на', dam_tru, 'но вы получили', dam_tru*defence)
+                            hp-=dam_tru*defence
+                        if luck<=199:
+                            print(ename, 'не попал по вам!')
+                    elif ehp<=0:
+                        battle_f=False
+                        win=1
+                        print('вы выиграли!')
+                    if hp>=1:
+                        luck=randint(1, 1000)
+                        if luck>=200:
+                            dam_tru=randint(1, damage)
+                            print('вы ударили', ename, 'на', dam_tru, 'но', ename,'получил', dam_tru*edefence)
+                            ehp-=dam_tru*edefence
+                        if luck<=199:
+                            print('вы не попали по', ename)
+                    elif hp<=0:
+                        battle_f=False
+                        win=0
+                        print('вы проиграли:(')
+        if lang=='eng':
+            print('у вас', hp, 'hp и',damage, 'урона')
+            print('Вы будите бится с', ename, 'Вот его статы:')
+            print(ehp, 'hp и', damage, 'урона')
+            first_kick=randint(1, 10)
+            stun=estun=0
+            while battle_f:
+                if first_kick>=5:
+                    estun=0
+                    if hp>=1 and stun==0:
+                        luck=randint(1, 1000)
+                        if luck>=200:
+                            dam_tru=randint(1, damage)
+                            print('you beat', ename, 'on', dam_tru+',but', ename,'get', dam_tru*edefence)
+                            ehp-=dam_tru*edefence
+                            sleep(0.2)
+                        if luck<=199:
+                            print('MISS')
+                            sleep(0.2)
+                        if luck>=850:
+                            print(ename, 'get stun')
+                            estun=1
+                            sleep(0.2)
+                    elif hp>=1 and stun==1:
+                        sleep(0.1)
+                    elif hp<=0:
+                        battle_f=False
+                        win=0
+                        print('you lose(')
+                    stun=0
+                    if ehp>=1 and estun==0:
+                        luck=randint(1, 1000)
+                        if luck>=200:
+                            dam_tru=randint(1, edamage)
+                            print(ename, 'hit you on', dam_tru, 'but you get', dam_tru*defence)
+                            hp-=dam_tru*defence
+                            sleep(0.2)
+                        if luck<=199:
+                            print(ename, 'missed')
+                            sleep(0.2)
+                        if luck>=870:
+                            print(ename, 'stunned you')
+                            stun=1
+                    elif ehp>=1 and estun==1:
+                        sleep(0.1)
+                    elif ehp<=0:
+                        battle_f=False
+                        win=1
+                        print('you win!')
+                else:
+                    if ehp>=1:
+                        luck=randint(1, 1000)
+                        if luck>=200:
+                            dam_tru=randint(1, edamage)
+                            print(ename, 'ударил вас на', dam_tru, 'но вы получили', dam_tru*defence)
+                            hp-=dam_tru*defence
+                        if luck<=199:
+                            print(ename, 'не попал по вам!')
+                    elif ehp<=0:
+                        battle_f=False
+                        win=1
+                        print('you win!')
+                    if hp>=1:
+                        luck=randint(1, 1000)
+                        if luck>=200:
+                            dam_tru=randint(1, damage)
+                            print('вы ударили', ename, 'на', dam_tru, 'но', ename,'получил', dam_tru*edefence)
+                            ehp-=dam_tru*edefence
+                        if luck<=199:
+                            print('вы не попали по', ename)
+                    elif hp<=0:
+                        battle_f=False
+                        win=0
+                        print('you lose(')
                     
                         
                     
@@ -239,28 +371,6 @@ class subfunc():
         from os import remove
         file=open(save_name, 'w')
         file.close()
-    def lic_c(code):
-        file=open('saves\licenze', 'r')
-        l1=file.readline(19)
-        a1P=file.readline(1)
-        l2=file.readline(19)
-        a1P=file.readline(1)
-        l3=file.readline(19)
-        a1P=file.readline(1)
-        l4=file.readline(19)
-        a1P=file.readline(1)
-        l5=file.readline(19)
-        a1P=file.readline(1)
-        l6=file.readline(19)
-        file.close()
-        if code==l1 or code==l2 or code==l3 or code==l4 or code==l5 or code==l6:
-            licence_i=True
-        elif code!=l1 or code!=l2 or code!=l3 or code!=l4 or code!=l5 or code!=l6:
-            licence_i=False
-        if code=='testing':
-            licence_i=0
-        global licence_check
-        licence_check=licence_i
     def inventory_u(to_do, to_fl, num, eff, use):
         language=file.read()
         if language == 'rus':

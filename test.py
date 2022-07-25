@@ -1,7 +1,3 @@
-from engine import subfunc
+from engine import *
 
-subfunc.inventory_u('add', 'тест', 0, 5, 'dam')
-
-subfunc.inventory_u('check', 0, 0, 0, 0)
-
-input()
+game.new_battle(100, 100, 10, 11, 0.9, 0.95, "враг ебать")
