@@ -283,9 +283,9 @@ class game:
                         win=0
                         print('вы проиграли:(')
         if lang=='eng':
-            print('у вас', hp, 'hp и',damage, 'урона')
-            print('Вы будите бится с', ename, 'Вот его статы:')
-            print(ehp, 'hp и', damage, 'урона')
+            print('you have', hp, 'hp, and',damage, 'damage')
+            print('you will fight with', ename, 'here are his characteristics:')
+            print(ehp, 'hp and', damage, 'damage')
             first_kick=randint(1, 10)
             stun=estun=0
             while battle_f:
@@ -336,10 +336,12 @@ class game:
                         luck=randint(1, 1000)
                         if luck>=200:
                             dam_tru=randint(1, edamage)
-                            print(ename, 'ударил вас на', dam_tru, 'но вы получили', dam_tru*defence)
+                            print(ename, 'bit you on', dam_tru, ', but you get', dam_tru*defence)
                             hp-=dam_tru*defence
+                            sleep(0.1)
                         if luck<=199:
-                            print(ename, 'не попал по вам!')
+                            print(ename, 'missed')
+                            sleep(0.1)
                     elif ehp<=0:
                         battle_f=False
                         win=1
@@ -348,16 +350,19 @@ class game:
                         luck=randint(1, 1000)
                         if luck>=200:
                             dam_tru=randint(1, damage)
-                            print('вы ударили', ename, 'на', dam_tru, 'но', ename,'получил', dam_tru*edefence)
+                            print('you bit', ename, 'on', dam_tru, ', but', ename,'get', dam_tru*edefence)
                             ehp-=dam_tru*edefence
+                            sleep(0.1)
                         if luck<=199:
-                            print('вы не попали по', ename)
+                            print('you missed')
+                            sleep(0.1)
                     elif hp<=0:
                         battle_f=False
                         win=0
                         print('you lose(')
-                    
-                        
+        global win
+
+        
                     
 class subfunc():
     global inventory, inventory_eff, inventory_use
