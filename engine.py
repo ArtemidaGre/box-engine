@@ -361,9 +361,89 @@ class game:
                         win=0
                         print('you lose(')
         global win
+    def battle_v3(hp, damage, defence, enemy_hp, enemy_damage, enemy_defence, enemy_name, accuracy, enemy_accuracy):
+        file=open('language.txt', 'r')
+        from os import system
+        from random import randint
+        sehp=enemy_hp
+        sedamage=enemy_damage
+        sedefence=enemy_defence
+        def __ai__(my_hp, my_damage, my_defence, my_accuracy):
+            global ai_choose
+            if my_hp>=sehp*0.7:
+                if my_accuracy<=41:
+                    if my_defence>=0.90:
+                        ai_cl=randint(1, 1000)
+                        if ai_cl>=501:
+                            ai_choose='attack'
+                        else:
+                            ai_choose='defence'
+                    if my_defence<=0.89 and my_defence>=0.61:
+                        ai_cl=randint(1, 1000)
+                        if ai_cl>=801:
+                            ai_choose='attack'
+                        else:
+                            ai_choose='defence'
+                    if my_defence<=0.60 and my_defence>=0.31:
+                        ai_cl=randint(1, 1000)
+                        if ai_cl>=921:
+                            ai_choose='attack'
+                        elif ai_cl<<921 and ai_cl>=101:
+                            ai_choose='defense'
+                        else:
+                            ai_choose='lost'
+                    if my_defence<<0.31:
+                        ai_cl=randint(0, 100)
+                        if ai_cl>=91:
+                            ai_choose='defence'
+                        else:
+                            ai_choose='attack'
+                if my_accuracy>>40 and my_accuracy<=65:
+                    if my_defence>=0.81:
+                        ai_cl=randint(1, 1000)
+                        if ai_cl>=501:
+                            ai_choose='attack'
+                        else:
+                            ai_choose='defence'
+                    if my_defence<=0.80 and my_defence>=0.51:
+                        ai_cl=randint(1, 1000)
+                        if ai_cl>=801:
+                            ai_choose='attack'
+                        else:
+                            ai_choose='defence'
+                    if my_defence<=0.50 and my_defence>=0.21:
+                        ai_cl=randint(1, 1000)
+                        if ai_cl>=921:
+                            ai_choose='attack'
+                        elif ai_cl<<921 and ai_cl>=101:
+                            ai_choose='defense'
+                        else:
+                            ai_choose='lost'
+                    if my_defence<<0.21:
+                        ai_cl=randint(0, 100)
+                        if ai_cl>=91:
+                            ai_choose='defence'
+                        else:
+                            ai_choose='attack'
+                if my_accuracy<=40:
+                    if my_damage*5>=my_hp and my_defence<=0.80:
+                        ai_cl=randint(0,1000)
+                        if ai_cl>=801:
+                            ai_choose='attack'
+                        elif ai_cl<=599:
+                            ai_choose='defence'
+                        else:
+                            ai_choose='lost'
+                            
+        lang=file.readline(3)
+        system('cls||clear')
+        if lang=='rus':
+            print('Бой начинается!\nВот ваши характеристики:\n'+hp+'hp\n'+damage+'урона\n'+defence+' коэф. защиты')
+            print('характеристики врага:\n'+enemy_hp+'hp\n'+enemy_damage+'урона\n'+enemy_defence+' коэф. защиты')
+            while hp>=1 and enemy_hp>=1:
+                battle_choise=str(input("Выбирите действие:\n1.атака\n2.защита\n3.пропуск\n4.обучение"))
 
-        
-                    
+
 class subfunc():
     global inventory, inventory_eff, inventory_use
     global hp, damage, defence, coins
